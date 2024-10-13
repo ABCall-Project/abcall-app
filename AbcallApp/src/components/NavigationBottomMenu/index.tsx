@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { BottomNavigation, Divider, Text } from 'react-native-paper';
+import { View } from 'react-native';
+import { BottomNavigation, Text } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {  lightTheme  } from '@styles/lightTheme';
 import { COLORS } from '@styles/colors';
 import { global } from '@styles/global';
+import { Chat } from '@modules/Chat';
 
 const HomeRoute = () => (
-    <Text>Inicio</Text>
+    <Chat />
 );
 
 const ReportsRoute = () => (

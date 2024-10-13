@@ -29,6 +29,7 @@ const global = (theme: MD3Theme) =>
     containerPages: {
       paddingLeft: 5,
       paddingRight: 5,
+      paddingTop: 10,
     }
   });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from './src/Layout';
+import { Layout } from '@app/Layout';
 
 function App(): React.JSX.Element {
 
