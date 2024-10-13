@@ -1,4 +1,5 @@
 import React from 'react';
+import Config from 'react-native-config';
 import {ScrollView} from 'react-native';
 import { global } from '@styles/global';
 import { lightTheme } from '@styles/lightTheme';
@@ -73,7 +74,7 @@ const messages: Bubble[] = [
     },
     {
         id: 3,
-        message: 'Tengo un error',
+        message: `${Config.ABCALL_WEBSOCKET_SERVICE_BASE_URL}`,
         request: true,
         response: false,
     },

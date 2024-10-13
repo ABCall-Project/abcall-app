@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android": "ENVFILE=.env react-native run-android",
+    "ios": "ENVFILE=.env react-native run-ios",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "ENVFILE=.env react-native start",
     "test": "jest"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "hermes-engine": "^0.11.0",
     "react": "18.3.1",
     "react-native": "0.75.4",
+    "react-native-config": "^1.5.3",
     "react-native-gesture-handler": "^2.20.0",
     "react-native-paper": "^5.12.5",
     "react-native-reanimated": "^3.15.5",

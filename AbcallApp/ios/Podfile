@@ -16,7 +16,8 @@ end
 
 target 'AbcallApp' do
   config = use_native_modules!
-
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+  pod 'React', :path => '../node_modules/react-native/'
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
