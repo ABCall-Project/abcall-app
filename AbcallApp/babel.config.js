@@ -10,7 +10,9 @@ module.exports = {
           '@styles': './src/styles',
           '@components': './src/components',
           '@modules': './src/modules',
-          '@app': './src'
+          '@app': './src',
+          '@clients': './src/clients',
+          '@utils': './src/utils'
         },
       },
     ],

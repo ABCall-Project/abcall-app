@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { COLORS } from '@styles/colors';
 
 export type Bubble = {
-    id: number,
+    id: string,
     request: boolean,
     response: boolean,
     message: string,
