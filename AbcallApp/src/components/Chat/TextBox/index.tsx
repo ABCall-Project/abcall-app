@@ -1,18 +1,30 @@
-import React from 'react';
-import {Text, View, StyleSheet, TextInput} from 'react-native';
+import React, { useState } from 'react';
+import {View, StyleSheet, TextInput, GestureResponderEvent, NativeSyntheticEvent, TextInputChangeEventData} from 'react-native';
 import { COLORS } from '@styles/colors';
-import { Icon } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 
 type TextBoxProps = {
     text?: string,
-}
+    onSendHandler: (value: string) => void
+};
 
-const TextBox = (props: TextBoxProps) => {
+const TextBox = ({ text = '', onSendHandler }: TextBoxProps) => {
+    const [value, setValue] = useState(text);
+
+    const onChangeHandler = (newText: string) => {
+        setValue(newText);
+    };
+
+    const onClick = () => {
+        onSendHandler(value);
+        setValue('');
+    };
+
     return (
         <View style={textBoxStyles.mainContainer}>
             <View style={textBoxStyles.textBoxContainer}>
-                <TextInput style={textBoxStyles.input} placeholder="Ingresa tu mensaje..." value={props.text} />
-                <Icon style={textBoxStyles.icon} source="send-outline" size={32} color={COLORS.PRIMARY_VARIATY}  />
+                <TextInput style={textBoxStyles.input} placeholder="Ingresa tu mensaje..." value={value} onChangeText={onChangeHandler} />
+                <IconButton style={textBoxStyles.icon} icon="send-outline" size={32} iconColor={COLORS.PRIMARY_VARIATY} onPress={onClick} />
             </View>
         </View>
     );

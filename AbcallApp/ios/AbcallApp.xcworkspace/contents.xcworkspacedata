@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:AbcallApp.xcodeproj">
+      location = "absolute:/Users/pedrocapriles/Documents/Postgrado/IngenieriaDeSoftware/semestre-IV/abcall-project/abcall-app/AbcallApp/ios/AbcallApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:AbcallApp.xcodeproj">
    </FileRef>
 </Workspace>
