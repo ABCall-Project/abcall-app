@@ -12,7 +12,8 @@ module.exports = {
           '@modules': './src/modules',
           '@app': './src',
           '@clients': './src/clients',
-          '@utils': './src/utils'
+          '@utils': './src/utils',
+          '@hooks': './src/hooks'
         },
       },
     ],

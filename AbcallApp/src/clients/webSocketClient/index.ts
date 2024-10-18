@@ -5,4 +5,4 @@ const socket = io(Config.ABCALL_WEBSOCKET_SERVICE_BASE_URL);
 
 export {
     socket,
-}
+};

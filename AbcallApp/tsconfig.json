@@ -9,6 +9,7 @@
       "@modules/*": ["src/modules/*"],
       "@clients/*": ["src/clients/*"],
       "@utils/*": ["src/utils/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@app/*": ["src/*"]
     }
   }
