@@ -96,11 +96,11 @@ jobs:
 
       - name: Build iOS app
         run: |
-          cd ios
+          cd AbcallApp/ios
           xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -allowProvisioningUpdates
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
         with:
           name: app-release.ipa
-          path: ios/build/Release-iphoneos/AbcallApp.ipa
+          path: AbcallApp/ios/build/Release-iphoneos/AbcallApp.ipa
