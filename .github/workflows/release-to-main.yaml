@@ -22,7 +22,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          cd ABcallApp
+          cd AbcallApp
           npm install
       
       - name: Set up JDK 11
@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Android app
         run: ./android/gradlew assembleRelease
-        working-directory: ABcallApp
+        working-directory: AbcallApp
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
@@ -71,7 +71,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          cd ABcallApp
+          cd AbcallApp
           npm install
       
       - name: Install CocoaPods
@@ -81,7 +81,7 @@ jobs:
         run: |
           cd ios
           pod install
-        working-directory: ABcallApp
+        working-directory: AbcallApp
 
       - name: Build iOS app
         run: xcodebuild -workspace ios/AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -allowProvisioningUpdates
