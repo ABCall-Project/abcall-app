@@ -29,8 +29,8 @@ jobs:
           java-version: '11'
 
       - name: Build Android app
-        run: ./gradlew assembleRelease
-        working-directory: ABcallApp/android
+        run: ./android/gradlew assembleRelease
+        working-directory: ABcallApp
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
@@ -72,8 +72,10 @@ jobs:
         run: sudo gem install cocoapods
 
       - name: Install iOS dependencies
-        run: pod install
-        working-directory: ABcallApp/ios
+        run: |
+          cd ios
+          pod install
+        working-directory: ABcallApp
 
       - name: Build iOS app
         run: xcodebuild -workspace ios/AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -allowProvisioningUpdates
