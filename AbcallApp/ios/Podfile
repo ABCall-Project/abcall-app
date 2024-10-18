@@ -16,6 +16,7 @@ end
 
 target 'AbcallApp' do
   config = use_native_modules!
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'react-native-config', :path => '../node_modules/react-native-config'
   pod 'React', :path => '../node_modules/react-native/'
   use_react_native!(
