@@ -92,6 +92,7 @@ jobs:
 
       - name: Build iOS app
         run: |
+          ls
           cd AbcallApp/ios
           xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -allowProvisioningUpdates
 
