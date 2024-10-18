@@ -95,7 +95,9 @@ jobs:
         working-directory: AbcallApp
 
       - name: Build iOS app
-        run: xcodebuild -workspace ios/AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -allowProvisioningUpdates
+        run: |
+          cd ios
+          xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -allowProvisioningUpdates
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
