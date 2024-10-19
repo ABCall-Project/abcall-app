@@ -21,6 +21,7 @@ target 'AbcallApp' do
   pod 'React-perflogger', :path => '../node_modules/react-native/ReactCommon/reactperflogger'
   pod 'React-graphics', :path => '../node_modules/react-native/ReactCommon/react/renderer/graphics'
   pod 'React', :path => '../node_modules/react-native/'
+  pod 'DoubleConversion', :podspec => File.join(config[:reactNativePath], 'third-party-podspecs/DoubleConversion.podspec')
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
