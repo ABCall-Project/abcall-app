@@ -65,9 +65,11 @@ jobs:
 
   ios-build:
     name: iosBuild
+    environment: production
     if: success() && github.event.pull_request.merged == true && github.head_ref == 'develop'
     needs: android-build
     runs-on: macos-latest
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

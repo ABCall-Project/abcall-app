@@ -62,6 +62,7 @@ jobs:
 
   ios-build:
     name: iosBuild
+    environment: production
     needs: android-build
     runs-on: macos-latest
     steps:
