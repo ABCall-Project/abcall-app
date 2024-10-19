@@ -118,7 +118,7 @@ jobs:
           cd AbcallApp/ios
           echo "$IOS_PROFILE" | base64 --decode > "$HOME/Library/MobileDevice/Provisioning Profiles/abcallprofile.mobileprovision"
           echo "$IOS_EXPORT_OPTIONS_PLIST" | base64 --decode > ExportOptions.plist
-          xcodebuild -scheme "AbcallApp" -archivePath $RUNNER_TEMP/AbcallApp.xcarchive -sdk iphoneos -configuration Debug -destination generic/platform=iOS clean archive  
+          xcodebuild -scheme "AbcallApp" -archivePath build/AbcallApp.xcarchive -sdk iphoneos -configuration Debug -destination generic/platform=iOS archive  
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
