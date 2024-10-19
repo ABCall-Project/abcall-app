@@ -104,7 +104,7 @@ jobs:
   
       - name: Clean Xcode Build
         run: |
-          cd ios/AbcallApp
+          cd AbcallApp/ios
           xcodebuild clean -workspace AbcallApp.xcworkspace -scheme AbcallApp
       
       - name: Install yarn
