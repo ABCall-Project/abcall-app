@@ -62,8 +62,8 @@ jobs:
 
   ios-build:
     name: iosBuild
-    environment: production
     runs-on: macos-latest
+    environment: production
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
