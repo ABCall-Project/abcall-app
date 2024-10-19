@@ -90,7 +90,9 @@ jobs:
       - name: Set up Provisioning Profile
         run: |
           cd AbcallApp
-          echo "$IOS_PROFILE" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/abcallprofile.mobileprovision
+          echo "$IOS_PROFILE" | base64 --decode > ios/abcallprofile.mobileprovision
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          mv ios/abcallprofile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
