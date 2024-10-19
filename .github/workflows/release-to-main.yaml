@@ -120,7 +120,7 @@ jobs:
         run: |
           cd AbcallApp/ios
           echo "$IOS_PROFILE" | base64 --decode > "$HOME/Library/MobileDevice/Provisioning Profiles/abcallprofile.mobileprovision"
-          xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -configuration Release -sdk iphoneos -archivePath build/AbcallApp.xcarchive archive CODE_SIGN_IDENTITY="iPhone Distribution" CODE_SIGNING_REQUIRED=YES -exportOptionsPlist ExportOptions.plist CODE_SIGNING_ALLOWED=YES -verbose
+          xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -configuration Release -sdk iphoneos -archivePath build/AbcallApp.xcarchive archive CODE_SIGN_IDENTITY="iPhone Distribution" CODE_SIGNING_REQUIRED=YES CODE_SIGNING_ALLOWED=YES -exportOptionsPlist ExportOptions.plist  -exportPath build/AbcallApp.ipa -exportArchive -verbose
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
