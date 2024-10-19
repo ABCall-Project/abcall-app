@@ -64,6 +64,10 @@ jobs:
     name: iosBuild
     runs-on: macos-latest
     environment: production
+    env:
+      IOS_CERTIFICATE: ${{ secrets.IOS_CERTIFICATE }}
+      IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+      IOS_PROFILE: ${{ secrets.IOS_PROFILE }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
