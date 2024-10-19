@@ -127,7 +127,7 @@ jobs:
       - name: Install iOS dependencies
         run: |
           cd ios
-          pod install --repo-update
+          pod install
         working-directory: AbcallApp
 
       - name: Build iOS app
