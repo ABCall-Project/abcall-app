@@ -90,9 +90,7 @@ jobs:
       - name: Set up Provisioning Profile
         run: |
           cd AbcallApp
-          echo "$IOS_PROFILE" | base64 --decode > ios/profile.mobileprovision
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          mv ios/profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+          echo "$IOS_PROFILE" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/abcallprofile.mobileprovision
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -119,7 +117,7 @@ jobs:
       - name: Build iOS app
         run: |
           cd AbcallApp/ios
-          xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -allowProvisioningUpdates
+          xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -configuration Release -sdk iphoneos -archivePath build/AbcallApp.xcarchive archive CODE_SIGN_IDENTITY="iPhone Distribution" CODE_SIGNING_REQUIRED=YES CODE_SIGNING_ALLOWED=YES -verbose
 
       - name: Upload IPA
         uses: actions/upload-artifact@v3
