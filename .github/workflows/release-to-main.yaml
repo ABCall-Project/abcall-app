@@ -119,6 +119,7 @@ jobs:
       - name: Build iOS app
         run: |
           cd AbcallApp/ios
+          echo "$IOS_PROFILE" | base64 --decode > "$HOME/Library/MobileDevice/Provisioning Profiles/abcallprofile.mobileprovision"
           xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -configuration Release -sdk iphoneos -archivePath build/AbcallApp.xcarchive archive CODE_SIGN_IDENTITY="iPhone Distribution" CODE_SIGNING_REQUIRED=YES CODE_SIGNING_ALLOWED=YES -verbose
 
       - name: Upload IPA
