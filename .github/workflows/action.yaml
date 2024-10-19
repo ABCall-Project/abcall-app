@@ -136,7 +136,7 @@ jobs:
           cd AbcallApp/ios
           mkdir $RUNNER_TEMP/build
           echo "$IOS_EXPORT_OPTIONS_PLIST" | base64 --decode > $RUNNER_TEMP/ExportOptions.plist
-          xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -archivePath $RUNNER_TEMP/AbcallApp.xcarchive archive CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE_SPECIFIER="abcall-profile" CODE_SIGNING_ALLOWED="No" DEVELOPMENT_TEAM="E9QYVHZC63" CODE_SIGN_STYLE="Manual"
+          xcodebuild -workspace AbcallApp.xcworkspace -scheme AbcallApp -sdk iphoneos -configuration Release -archivePath $RUNNER_TEMP/AbcallApp.xcarchive archive CODE_SIGN_IDENTITY="iPhone Distribution" PROVISIONING_PROFILE_SPECIFIER="abcall-profile" CODE_SIGNING_ALLOWED="Yes" DEVELOPMENT_TEAM="E9QYVHZC63" CODE_SIGN_STYLE="Manual"
           xcodebuild -exportArchive -archivePath $RUNNER_TEMP/AbcallApp.xcarchive -exportPath $RUNNER_TEMP/build -exportOptionsPlist $RUNNER_TEMP/ExportOptions.plist
 
       - name: Upload IPA
