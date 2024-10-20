@@ -143,7 +143,6 @@ jobs:
           code-signing-identity: 'iPhone Distribution'
           team-id: ${{ secrets.IOS_TEAM_ID }}
           certificate-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
-          export-options: ${{ secrets.EXPORT_OPTIONS }}
           scheme: AbcallApp
 
       - name: Upload IPA
