@@ -140,6 +140,7 @@ jobs:
           code-signing-identity: 'iPhone Distribution'
           team-id: ${{ secrets.IOS_TEAM_ID }}
           certificate-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+          export-options-path: ${{ secrets.IOS_EXPORT_OPTIONS_PLIST }}
           workspace-path: AbcallApp/ios/AbcallApp.xcworkspace
           scheme: AbcallApp
 
