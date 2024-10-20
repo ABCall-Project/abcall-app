@@ -25,7 +25,7 @@ const Chat = () => {
     return () => {
       socket.disconnect();
     };
-  }, [messages, isConnected]);
+  }, []);
 
   const onSend = (text: string) => {
     const message: Bubble = {
