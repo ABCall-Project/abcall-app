@@ -1,31 +1,31 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "baseUrl": ".",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "baseUrl": "",
     "paths": {
       "@assets/*": [
-        "./assets/*"
+        "assets/*"
       ],
       "@styles/*": [
-        "./src/styles/*"
+        "src/styles/*"
       ],
       "@components/*": [
-        "./src/components/*"
+        "src/components/*"
       ],
       "@modules/*": [
-        "./src/modules/*"
+        "src/modules/*"
       ],
       "@clients/*": [
-        "./src/clients/*"
+        "src/clients/*"
       ],
       "@utils/*": [
-        "./src/utils/*"
+        "src/utils/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
       ],
       "@app/*": [
-        "./src/*"
+        "src/*"
       ]
     }
   }

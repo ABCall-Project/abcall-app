@@ -87,7 +87,7 @@ const messagesMock: Bubble[] = [
 ];
 
 const renderBubbleList = (messages: Bubble[]) => {
-    return messages.map((message: Bubble) => <MessageBubble {...message} />,
+    return messages.map((message: Bubble) => <MessageBubble key={message.id} {...message} />,
     );
 };
 
@@ -107,4 +107,4 @@ const Messages = ({ messages = [] }: MessagesProps) => {
 
 
 
-export { Messages, messagesMock };
+export { Messages };

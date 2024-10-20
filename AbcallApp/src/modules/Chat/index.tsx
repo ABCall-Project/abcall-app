@@ -1,34 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { GestureResponderEvent } from 'react-native';
 import { Header } from '@components/Chat/Header';
 import { Messages } from '@components/Chat/Messages';
 import { TextBox } from '@components/Chat/TextBox';
 import type { Bubble } from '@components/Chat/Messages/Message';
 import { socket } from '@clients/webSocketClient';
 import { generateGuid } from '@utils/uuid';
+import useNetworkCheck from '@hooks/useNetworkCheck';
 
-
-const INITIALIZATE_STATE = {
-  id: '',
-  request: false,
-  response: false,
-  message: '',
-};
+const INTERNET_ERROR_MESSAGE =
+  'Hay un problema de conexión, ¿Podrías revisar tu conexión de internet?';
 
 const Chat = () => {
   const [messages, setMessages] = useState<Bubble[]>([]);
-  const [userId, setUserId] = useState<string>('e8b8a5d2-0f71-4e4d-b6e3-9c9d64f9cdda'); // Add state to store user ID
-
+  const [userId, setUserId] = useState<string>('e8b8a5d2-0f71-4e4d-b6e3-9c9d64f9cdda');
+  const { isConnected } = useNetworkCheck();
 
   useEffect(() => {
-    socket.on('response', (response) => {
+    socket.on('response', response => {
       setMessages((prevMessages: Bubble[]) => [
         ...prevMessages,
-        { id: generateGuid(), response: true, request: false, message: response }
+        { id: generateGuid(), response: true, request: false, message: response },
       ]);
     });
 
-    // Clean up the WebSocket connection when the component unmounts
     return () => {
       socket.disconnect();
     };
@@ -41,15 +35,21 @@ const Chat = () => {
       response: false,
       message: text,
     };
-    console.log(userId)
-    socket.send(JSON.stringify({
-      userId: userId,
-      message: message.message
-    }));
-    setMessages([
-      ...messages,
-      ...[message],
-    ]);
+    if (isConnected === true) {
+      setMessages([...messages, ...[message]]);
+      socket.send(JSON.stringify({
+        userId: userId,
+        message: message.message
+      }));
+    } else {
+      const messageError: Bubble = {
+        id: generateGuid(),
+        request: false,
+        response: true,
+        message: INTERNET_ERROR_MESSAGE,
+      };
+      setMessages([...messages, ...[message], ...[messageError]]);
+    }
   };
 
   return (

@@ -1,0 +1,163 @@
+name: Merge to Develop
+on:
+  push
+  
+jobs:
+
+  android-build:
+    name: androidBuild
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+      
+      - name: Install yarn
+        run: npm install -g yarn
+      
+      - name: Install dependencies
+        run: |
+          cd AbcallApp
+          npm install
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+  
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 31
+          build-tools-version: 31.0.0
+          ndk: '22.1.7171670'
+
+      - name: Build Android app
+        run: |
+          cd android
+          ./gradlew assembleRelease
+        working-directory: AbcallApp
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Validate results with errors
+        if: ${{ failure() }}
+        env:
+          ERROR_MESSAGE: One or various build failed 🔴
+        run: echo "::set-output name=answer::${ERROR_MESSAGE}"
+      - name: Validate result without errors
+        if: ${{ success() }}
+        env:
+          MESSAGE_SUCCESS: All build were success
+        run: echo "::set-output name=answer::${MESSAGE_SUCCESS}"
+# Comment because there are an issue
+  # ios-build:
+  #   name: iosBuild
+  #   runs-on: macos-latest
+  #   environment: production
+  #   env:
+  #     IOS_CERTIFICATE: ${{ secrets.IOS_CERTIFICATE }}
+  #     IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+  #     IOS_PROFILE: ${{ secrets.IOS_PROFILE }}
+  #     IOS_EXPORT_OPTIONS_PLIST: ${{ secrets.IOS_EXPORT_OPTIONS_PLIST }}
+  #     KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+
+      
+  #     - name: Create temporary keychain
+  #       run: |
+  #         security create-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
+  #         security default-keychain -s build.keychain
+  #         security unlock-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
+  #         security set-keychain-settings build.keychain
+      
+  #     - name: Set up Signing Certificate
+  #       run: |
+  #         cd AbcallApp
+  #         echo "$IOS_CERTIFICATE" | base64 --decode > ios/certificate.p12
+  #         ls -la ios/certificate.p12
+  #         chmod 600 ios/certificate.p12
+  #         security import ios/certificate.p12 -P "$IOS_CERTIFICATE_PASSWORD" -k ~/Library/Keychains/build.keychain -T /usr/bin/codesign -f pkcs12 -t cert
+        
+  #     - name: Set up Provisioning Profile
+  #       run: |
+  #         cd AbcallApp
+  #         echo "$IOS_PROFILE" | base64 --decode > ios/abcallprofile.mobileprovision
+  #         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+  #         mv ios/abcallprofile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+  #         ls -la ~/Library/MobileDevice/Provisioning\ Profiles/abcallprofile.mobileprovision
+
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '20.x'
+
+  #     - name: Clean workspace
+  #       run: |
+  #         cd AbcallApp
+  #         git clean -ffdx
+  #         npm cache clean --force
+  
+  #     - name: Clean Xcode Build
+  #       run: |
+  #         cd AbcallApp/ios
+  #         xcodebuild clean -workspace AbcallApp.xcworkspace -scheme AbcallApp
+      
+  #     - name: Install yarn
+  #       run: npm install -g yarn
+      
+  #     - name: Install dependencies
+  #       run: |
+  #         cd AbcallApp
+  #         npm install
+      
+  #     - name: Install CocoaPods
+  #       run: sudo gem install cocoapods
+
+  #     - name: Install iOS dependencies
+  #       run: |
+  #         cd ios
+  #         pod install
+  #       working-directory: AbcallApp
+
+  #     - name: Build IOS App
+  #       uses: yukiarrr/ios-build-action@v1.4.0
+  #       with:
+  #         project-path: AbcallApp/ios/AbcallApp.xcodeproj
+  #         workspace-path: AbcallApp/ios/AbcallApp.xcworkspace
+  #         p12-base64: ${{ secrets.IOS_CERTIFICATE }}
+  #         configuration: Release
+  #         export-method: ad-hoc
+  #         mobileprovision-base64: ${{ secrets.IOS_PROFILE }}
+  #         code-signing-identity: 'iPhone Distribution'
+  #         team-id: ${{ secrets.IOS_TEAM_ID }}
+  #         certificate-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+  #         scheme: AbcallApp
+
+  #     - name: Upload IPA
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: app-release.ipa
+  #         path: AbcallApp/ios/build/Release-iphoneos/AbcallApp.ipa
+
+  #     - name: Validate results with errors
+  #       if: ${{ failure() }}
+  #       env:
+  #         ERROR_MESSAGE: One or various build failed 🔴
+  #       run: echo "::set-output name=answer::${ERROR_MESSAGE}"
+  #     - name: Validate result without errors
+  #       if: ${{ success() }}
+  #       env:
+  #         MESSAGE_SUCCESS: All build were success
+  #       run: echo "::set-output name=answer::${MESSAGE_SUCCESS}"
