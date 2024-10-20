@@ -74,6 +74,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
+      - name: Add build keychain to search list
+        run: |
+          security list-keychains -s build.keychain
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" build.keychain
+      
       - name: Create temporary keychain
         run: |
           security create-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
@@ -87,7 +92,7 @@ jobs:
           echo "$IOS_CERTIFICATE" | base64 --decode > ios/certificate.p12
           ls -la ios/certificate.p12
           chmod 600 ios/certificate.p12
-          security import ios/certificate.p12 -P "$IOS_CERTIFICATE_PASSWORD" -k ~/Library/Keychains/login.keychain -T /usr/bin/codesign -f pkcs12 -t cert
+          security import ios/certificate.p12 -P "$IOS_CERTIFICATE_PASSWORD" -k ~/Library/Keychains/build.keychain -T /usr/bin/codesign -f pkcs12 -t cert
         
       - name: Set up Provisioning Profile
         run: |
