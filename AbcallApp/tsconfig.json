@@ -3,14 +3,30 @@
   "compilerOptions": {
     "baseUrl": "",
     "paths": {
-      "@assets/*": ["assets/*"],
-      "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/components/*"],
-      "@modules/*": ["src/modules/*"],
-      "@clients/*": ["src/clients/*"],
-      "@utils/*": ["src/utils/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@app/*": ["src/*"]
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@clients/*": [
+        "src/clients/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@app/*": [
+        "src/*"
+      ]
     }
   }
 }

@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {Header} from '@components/Chat/Header';
-import {Messages} from '@components/Chat/Messages';
-import {TextBox} from '@components/Chat/TextBox';
-import type {Bubble} from '@components/Chat/Messages/Message';
-import {socket} from '@clients/webSocketClient';
-import {generateGuid} from '@utils/uuid';
+import React, { useState, useEffect } from 'react';
+import { Header } from '@components/Chat/Header';
+import { Messages } from '@components/Chat/Messages';
+import { TextBox } from '@components/Chat/TextBox';
+import type { Bubble } from '@components/Chat/Messages/Message';
+import { socket } from '@clients/webSocketClient';
+import { generateGuid } from '@utils/uuid';
 import useNetworkCheck from '@hooks/useNetworkCheck';
 
 const INTERNET_ERROR_MESSAGE =
@@ -12,13 +12,14 @@ const INTERNET_ERROR_MESSAGE =
 
 const Chat = () => {
   const [messages, setMessages] = useState<Bubble[]>([]);
-  const {isConnected} = useNetworkCheck();
+  const [userId, setUserId] = useState<string>('e8b8a5d2-0f71-4e4d-b6e3-9c9d64f9cdda');
+  const { isConnected } = useNetworkCheck();
 
   useEffect(() => {
     socket.on('response', response => {
       setMessages((prevMessages: Bubble[]) => [
         ...prevMessages,
-        {id: generateGuid(), response: true, request: false, message: response},
+        { id: generateGuid(), response: true, request: false, message: response },
       ]);
     });
 
@@ -36,7 +37,10 @@ const Chat = () => {
     };
     if (isConnected === true) {
       setMessages([...messages, ...[message]]);
-      socket.send(message.message);
+      socket.send(JSON.stringify({
+        userId: userId,
+        message: message.message
+      }));
     } else {
       const messageError: Bubble = {
         id: generateGuid(),
@@ -57,4 +61,4 @@ const Chat = () => {
   );
 };
 
-export {Chat};
+export { Chat };
