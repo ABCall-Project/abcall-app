@@ -1,6 +1,6 @@
 import React from 'react';
 import Config from 'react-native-config';
-import {ScrollView} from 'react-native';
+import { ScrollView } from 'react-native';
 import { global } from '@styles/global';
 import { lightTheme } from '@styles/lightTheme';
 import { MessageBubble, Bubble } from '@components/Chat/Messages/Message';
@@ -73,6 +73,12 @@ const messagesMock: Bubble[] = [
         response: true,
     },
     {
+        id: '4',
+        message: 'Incidencia',
+        request: true,
+        response: false,
+    },
+    {
         id: '3',
         message: `${Config.ABCALL_WEBSOCKET_SERVICE_BASE_URL}`,
         request: true,
@@ -101,4 +107,4 @@ const Messages = ({ messages = [] }: MessagesProps) => {
 
 
 
-export { Messages };
+export { Messages, messagesMock };
