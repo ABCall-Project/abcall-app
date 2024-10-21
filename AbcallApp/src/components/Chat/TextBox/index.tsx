@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
-import {COLORS} from '@styles/colors';
-import {IconButton} from 'react-native-paper';
+import React, { useState } from 'react';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { COLORS } from '@styles/colors';
+import { IconButton } from 'react-native-paper';
 
 type TextBoxProps = {
   text?: string;
   onSendHandler: (value: string) => void;
 };
 
-const TextBox = ({text = '', onSendHandler}: TextBoxProps) => {
+const TextBox = ({ text = '', onSendHandler }: TextBoxProps) => {
   const [value, setValue] = useState(text);
 
   const onChangeHandler = (newText: string) => {
@@ -65,4 +65,4 @@ const textBoxStyles = StyleSheet.create({
   },
 });
 
-export {TextBox};
+export { TextBox };
