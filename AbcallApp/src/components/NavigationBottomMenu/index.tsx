@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { BottomNavigation, Text } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {  lightTheme  } from '@styles/lightTheme';
+import { lightTheme } from '@styles/lightTheme';
 import { COLORS } from '@styles/colors';
 import { global } from '@styles/global';
 import { Chat } from '@modules/Chat';
+import { Issue } from '@modules/Issue/index';
 
 const HomeRoute = () => (
     <Chat />
@@ -20,7 +21,7 @@ const QAndARoute = () => (
 );
 
 const IssuesRoute = () => (
-    <Text>Problemas</Text>
+    <Issue />
 );
 
 
@@ -45,25 +46,25 @@ const NavigationBottomMenu = () => {
 
     const renderIcon = ({ route, color }) => (
         <Icon name={route.icon} size={24} color={color} />
-      );
+    );
 
     return (
         <View style={styles.container}>
             <BottomNavigation
-            navigationState={{ index, routes }}
-            onIndexChange={setIndex}
-            renderScene={renderScene}
-            activeColor={COLORS.PRIMARY_VARIATY}
-            inactiveColor={COLORS.PRIMARY}
-            renderIcon={renderIcon}
-            barStyle={
-                {
-                    borderTopWidth: 1,
-                    borderTopColor: COLORS.PRIMARY,
-                    backgroundColor: lightTheme.colors.background,
+                navigationState={{ index, routes }}
+                onIndexChange={setIndex}
+                renderScene={renderScene}
+                activeColor={COLORS.PRIMARY_VARIATY}
+                inactiveColor={COLORS.PRIMARY}
+                renderIcon={renderIcon}
+                barStyle={
+                    {
+                        borderTopWidth: 1,
+                        borderTopColor: COLORS.PRIMARY,
+                        backgroundColor: lightTheme.colors.background,
+                    }
                 }
-            }
-        />
+            />
         </View>
     );
 };
