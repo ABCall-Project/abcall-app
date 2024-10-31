@@ -13,7 +13,8 @@ module.exports = {
           '@app': './src',
           '@clients': './src/clients',
           '@utils': './src/utils',
-          '@hooks': './src/hooks'
+          '@hooks': './src/hooks',
+          '@models': './src/models'
         },
       },
     ],

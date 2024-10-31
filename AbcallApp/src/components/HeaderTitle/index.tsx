@@ -1,13 +1,19 @@
 import React from 'react';
-import {View, StyleSheet, Image, Text} from 'react-native';
+import {View, StyleSheet, Image, Text, ImageSourcePropType} from 'react-native';
 import { Icon } from 'react-native-paper';
 import {COLORS} from '@styles/colors';
 
-const Header = () => {
+type HeaderTitleProps = {
+    imagePath?: ImageSourcePropType,
+    title: string,
+};
+
+
+const HeaderTitle = ({ imagePath, title }: HeaderTitleProps) => {
   return (
     <View style={styles.headerContainer}>
-      <Image style={styles.logo} source={require('@assets/chatbot.png')} />
-      <Text style={styles.title}>ABCall Bot</Text>
+      <Image style={styles.logo} source={imagePath} />
+      <Text style={styles.title}>{title}</Text>
       <Icon source="keyboard-return"  color={COLORS.WHITE} size={24}  />
     </View>
   );
@@ -37,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Header};
+export {HeaderTitle};

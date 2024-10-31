@@ -6,6 +6,7 @@ import {  lightTheme  } from '@styles/lightTheme';
 import { COLORS } from '@styles/colors';
 import { global } from '@styles/global';
 import { Chat } from '@modules/Chat';
+import { Issues } from '@modules/Issues';
 
 const HomeRoute = () => (
     <Chat />
@@ -20,7 +21,7 @@ const QAndARoute = () => (
 );
 
 const IssuesRoute = () => (
-    <Text>Problemas</Text>
+    <Issues />
 );
 
 
