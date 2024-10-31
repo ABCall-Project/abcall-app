@@ -30,7 +30,7 @@ services:
     environment:
       - APP_NAME=abcall-issues-api
     env_file:
-      - ../abcall-issues-api/.env.local
+      - .env.local
     volumes:
       - "../abcall-issues-api/.:/app"
     ports:
@@ -57,7 +57,7 @@ services:
     environment:
       - APP_NAME=abcall-websocket-service
     env_file:
-      - ../abcall-websocket-service/.env.local
+      - .env.local
     tty: true
     depends_on:
       - issues-api

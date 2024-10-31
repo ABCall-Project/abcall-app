@@ -6,7 +6,7 @@ const COLORS = {
     WHITE: 'white',
     SECONDARY_VARIATY: '#EBEBF2',
     BLACK: 'black',
-    INPUT_BORDER_COLOR: '#282828',
+    INPUT_BORDER_COLOR: '#282828'
 };
 
 export { COLORS };
