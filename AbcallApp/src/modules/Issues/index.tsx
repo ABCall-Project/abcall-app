@@ -3,7 +3,6 @@ import {View, StyleSheet, FlatList, RefreshControl} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {HeaderTitle} from '@components/HeaderTitle';
 import {SecondaryHeader} from '@components/Issues/SecondaryHeader';
-import {IssueList} from '@components/Issues/IssueList';
 import {useGetIssuesPaginationByUserId} from '@hooks/useIssues';
 import {COLORS} from '@styles/colors';
 import {IssueCard} from '@components/Issues/IssueCard';
