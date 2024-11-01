@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import {IssueCard} from '@components/Issues/IssueCard';
 import {Issue} from '@models/Issue';
 import { global } from '@styles/global';
