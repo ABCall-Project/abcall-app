@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Header } from '@components/Chat/Header';
+import { HeaderTitle } from '@components/HeaderTitle';
 import { Messages } from '@components/Chat/Messages';
 import { TextBox } from '@components/Chat/TextBox';
 import type { Bubble } from '@components/Chat/Messages/Message';
@@ -12,7 +12,7 @@ const INTERNET_ERROR_MESSAGE =
 
 const Chat = () => {
   const [messages, setMessages] = useState<Bubble[]>([]);
-  const [userId, setUserId] = useState<string>('e8b8a5d2-0f71-4e4d-b6e3-9c9d64f9cdda');
+  const [userId] = useState<string>('e8b8a5d2-0f71-4e4d-b6e3-9c9d64f9cdda');
   const { isConnected } = useNetworkCheck();
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const Chat = () => {
 
   return (
     <>
-      <Header />
+      <HeaderTitle imagePath={require('@assets/chatbot.png')} title="ABCall Bot" />
       <Messages messages={messages} />
       <TextBox onSendHandler={onSend} />
     </>
