@@ -1,6 +1,6 @@
 {
   "name": "AbcallApp",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "ENVFILE=.env react-native run-android",
@@ -33,10 +33,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@babel/plugin-transform-class-properties": "^7.25.9",
+    "@babel/plugin-transform-private-methods": "^7.25.9",
+    "@babel/plugin-transform-private-property-in-object": "^7.25.9",
     "@babel/plugin-transform-runtime": "^7.25.9",
-    "@babel/preset-env": "^7.26.0",
-    "@babel/preset-react": "^7.25.9",
-    "@babel/preset-typescript": "^7.26.0",
     "@babel/runtime": "^7.20.0",
     "@faker-js/faker": "^9.1.0",
     "@react-native/babel-preset": "0.75.4",
