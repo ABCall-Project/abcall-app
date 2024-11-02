@@ -13,6 +13,9 @@ jest.mock('@react-native-community/netinfo', () => {
   });
 
 describe('Unit test suite for useNetworkCheck custom hook', () => {
+    afterAll(() => {
+        jest.unmock('@react-native-community/netinfo');
+    });
     test('Should return default connection status',() => {
         const {result} = renderHook(() => useNetworkCheck());
 
