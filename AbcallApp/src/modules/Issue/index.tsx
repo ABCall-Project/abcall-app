@@ -1,11 +1,10 @@
 import { Form } from '@components/Issue/Form/index';
-import { Header } from '@components/Issue/Header/index';
+import { HeaderTitle } from '@components/HeaderTitle';
 import React from 'react';
-
 const Issue = () => {
     return (
         <>
-            <Header />
+            <HeaderTitle title="Nuevo Incidente" imagePath={require('@assets/check.png')} />
             <Form />
         </>
     );

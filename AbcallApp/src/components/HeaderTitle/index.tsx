@@ -1,20 +1,27 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text, ImageSourcePropType} from 'react-native';
-import { Icon } from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import {COLORS} from '@styles/colors';
+import {useNavigation} from '@react-navigation/native';
 
 type HeaderTitleProps = {
-    imagePath?: ImageSourcePropType,
-    title: string,
+  imagePath?: ImageSourcePropType;
+  title: string;
 };
 
+const HeaderTitle = ({imagePath, title}: HeaderTitleProps) => {
+  const navigation = useNavigation();
 
-const HeaderTitle = ({ imagePath, title }: HeaderTitleProps) => {
+  const _goBack = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
+  };
   return (
     <View style={styles.headerContainer}>
       <Image style={styles.logo} source={imagePath} />
       <Text style={styles.title}>{title}</Text>
-      <Icon source="keyboard-return"  color={COLORS.WHITE} size={24}  />
+      <IconButton icon="keyboard-return" iconColor={COLORS.WHITE} size={24} onPress={_goBack} />
     </View>
   );
 };
@@ -39,7 +46,6 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontSize: 24,
     fontWeight: 'bold',
-
   },
 });
 

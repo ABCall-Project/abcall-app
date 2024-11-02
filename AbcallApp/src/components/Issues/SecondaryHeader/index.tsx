@@ -1,9 +1,11 @@
 import React from 'react';
 import {Text, IconButton} from 'react-native-paper';
 import {View, StyleSheet} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {COLORS} from '@styles/colors';
 
 const SecondaryHeader = () => {
+  const navigation = useNavigation();
   return (
     <>
       <View style={styles.headerContainer}>
@@ -17,6 +19,7 @@ const SecondaryHeader = () => {
             icon="plus-circle-outline"
             size={42}
             iconColor={COLORS.PRIMARY_VARIATY}
+            onPress={() => navigation.navigate('Issue')}
           />
         </View>
       </View>
