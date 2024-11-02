@@ -9,6 +9,8 @@ type HeaderTitleProps = {
   title: string;
 };
 
+
+
 const HeaderTitle = ({imagePath, title}: HeaderTitleProps) => {
   const navigation = useNavigation();
 
