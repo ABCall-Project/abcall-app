@@ -1,5 +1,4 @@
 import React from 'react';
-import Config from 'react-native-config';
 import { ScrollView } from 'react-native';
 import { global } from '@styles/global';
 import { lightTheme } from '@styles/lightTheme';
@@ -11,7 +10,7 @@ const renderBubbleList = (messages: Bubble[]) => {
 };
 
 type MessagesProps = {
-    messages: Bubble[],
+    messages?: Bubble[],
 }
 
 

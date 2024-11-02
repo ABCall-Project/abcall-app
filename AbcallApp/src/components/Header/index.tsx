@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {Appbar} from 'react-native-paper';
 
+
 const Header = () => {
   const _goBack = () => console.log('Went back');
 
