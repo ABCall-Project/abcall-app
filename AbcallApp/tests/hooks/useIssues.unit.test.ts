@@ -6,6 +6,7 @@ import {Issue} from '@models/Issue';
 import IssueBuilder from '@tests/builders/IssueBuilder';
 
 jest.mock('@clients/backendForFrontend/issuesServices');
+global.fetch = jest.fn();
 
 describe('Unit test suite for useIssues custom hook', () => {
   beforeEach(() => {

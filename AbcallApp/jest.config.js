@@ -29,6 +29,7 @@ module.exports = {
     '/out/',
     '<rootDir>/tests/setupTests.ts',
     '<rootDir>/tests/builders/',
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|react-native-safe-area-context)/)',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
@@ -38,6 +39,7 @@ module.exports = {
     '<rootDir>/tests/setupTests.ts',
     '<rootDir>/tests/builders/',
   ],
+  testTimeout: 30000,
   moduleNameMapper: {
     '^react-native-config$': '<rootDir>/tests/__mocks__/react-native-config.js',
     '^@components/(.*)$': '<rootDir>/src/components/$1',

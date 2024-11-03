@@ -1,8 +1,17 @@
 import React from 'react';
-import {render, screen, waitFor, renderHook} from '@testing-library/react-native';
+import {
+  render,
+  screen,
+  waitFor,
+  renderHook,
+  fireEvent
+} from '@testing-library/react-native';
+import {faker} from '@faker-js/faker';
 import {Issues} from '@modules/Issues';
 import * as useIssues from '@hooks/useIssues';
 import IssueBuilder from '@tests/builders/IssueBuilder';
+import {useGetIssuesPaginationByUserId} from '@hooks/useIssues';
+import {Issue} from '@models/Issue';
 
 jest.mock('react-native-paper', () => {
   const {Text} = require('react-native');
@@ -38,14 +47,29 @@ jest.mock('@components/Issues/SecondaryHeader', () => {
   };
 });
 
+
 describe('Unit test suite for Issues component', () => {
+  const mockFetch = jest.fn();
+  global.fetch = mockFetch;
+
+  beforeEach(() => {
+    (fetch as jest.Mock).mockClear();
+  });
   afterAll(() => {
     jest.unmock('react-native-paper');
     jest.unmock('@components/HeaderTitle');
     jest.unmock('@components/Issues/SecondaryHeader');
     jest.clearAllMocks();
   });
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
   test('Should render the Issues component', () => {
+    mockFetch.mockResolvedValue({
+      json: jest.fn().mockReturnValue({
+        page: 1,
+      }),
+    });
     render(<Issues />);
 
     const [element] = screen.getAllByText(/Incidentes/i);
@@ -53,9 +77,19 @@ describe('Unit test suite for Issues component', () => {
     expect(element).toBeTruthy();
   });
 
-  test('Should render the Issues component with loading state', async () => {
+  test('Should render the Issues component with loading state', () => {
+    mockFetch.mockResolvedValue({
+      json: jest.fn().mockReturnValue({
+        page: 1,
+      }),
+    });
     jest.spyOn(useIssues, 'useGetIssuesPaginationByUserId').mockReturnValue({
-      issues: {data: [new IssueBuilder().build()], page: 1, limit: 10, hasNext: false},
+      issues: {
+        data: [new IssueBuilder().build()],
+        page: 1,
+        limit: 10,
+        hasNext: false,
+      },
       setPage: jest.fn(),
       isLoading: true,
       isRefreshing: false,
@@ -68,6 +102,5 @@ describe('Unit test suite for Issues component', () => {
     const loadingElement = screen.getByText(/Loading.../i);
 
     expect(loadingElement).toBeTruthy();
-    
   });
 });
