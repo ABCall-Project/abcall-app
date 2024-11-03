@@ -11,6 +11,7 @@
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
       "@models/*": ["src/models/*"],
+      "@tests/*": ["tests/*"],
       "@app/*": ["src/*"]
     }
   }

@@ -32,7 +32,7 @@ const useGetIssuesPaginationByUserId = (
     // Fetch issues from your API
     const newIssues = await issuesServices.getIssuesPaginationByUserId(userId, page, limit);
     setIssues(prevState => ({
-      data: page === 1 ? newIssues : [...prevState.data, ...newIssues.data],
+      data: page === 1 ? newIssues.data : [...prevState.data, ...newIssues.data],
       page,
       limit: prevState.limit,
       hasNext: newIssues.hasNext,
