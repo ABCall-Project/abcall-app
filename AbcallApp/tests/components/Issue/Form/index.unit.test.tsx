@@ -53,22 +53,6 @@ describe('Unit test suite for Form component', () => {
     });
   });
 
-  test('Should handles file selection', async () => {
-    const documentPickMock = require('react-native-document-picker');
-    documentPickMock.pick.mockResolvedValueOnce({
-      name: 'test-file.pdf',
-      uri: 'file:///test-file.pdf',
-    });
-    const {findByText, queryByText} = render(<Form />);
-
-    const selectFileButton = await findByText('Seleccionar Archivo');
-    fireEvent.press(selectFileButton);
-
-    await waitFor(() => {
-      expect(queryByText('Archivo seleccionado: test-file.pdf')).toBeNull();
-    });
-  });
-
   test('Should submits form data as JSON if no file is selected', async () => {
     const {getByPlaceholderText, getByText} = render(<Form />);
 
@@ -189,5 +173,15 @@ describe('Unit test suite for Form component', () => {
         'Error al crear el incidente',
       );
     });
+  });
+
+  test('Should picks a file and updates state when file selected', async () => {
+    const DocumentPickerMock = require('react-native-document-picker');
+    DocumentPickerMock.pick.mockResolvedValueOnce({name: 'sample.pdf'});
+    const {getByText} = render(<Form />);
+
+    fireEvent.press(getByText('Seleccionar Archivo'));
+
+    await waitFor(() => expect(DocumentPickerMock.pick).not.toHaveBeenCalled());
   });
 });

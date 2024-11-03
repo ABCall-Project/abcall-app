@@ -4,8 +4,33 @@ on:
       types:
         - closed  
 jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+      
+      - name: Install yarn
+        run: npm install -g yarn
+      
+      - name: Install dependencies
+        run: |
+          cd AbcallApp
+          npm install
+
+      - name: Testing 🧪 with coverage 📊
+        run: |
+          npm run test:coverage
+          
   merge-from-develop:
     name: Merge from develop
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Merge ${{ github.ref }} -> develop
