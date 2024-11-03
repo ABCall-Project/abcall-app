@@ -26,6 +26,7 @@ jobs:
 
       - name: Testing 🧪 with coverage 📊
         run: |
+          cd AbcallApp
           npm run test:coverage
 
   android-build:

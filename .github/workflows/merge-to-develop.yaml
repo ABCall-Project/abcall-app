@@ -26,8 +26,9 @@ jobs:
 
       - name: Testing 🧪 with coverage 📊
         run: |
+          cd AbcallApp
           npm run test:coverage
-          
+
   merge-from-develop:
     name: Merge from develop
     needs: test
