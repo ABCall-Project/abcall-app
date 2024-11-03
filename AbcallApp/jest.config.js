@@ -18,9 +18,6 @@ module.exports = {
       lines: 86,
       statements: 84,
     },
-    'ts-jest': {
-      tsconfig: 'tsconfig.test.json',
-    },
   },
   testPathIgnorePatterns: [
     '/node_modules/',
