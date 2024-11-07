@@ -3,6 +3,7 @@ import {Text, IconButton} from 'react-native-paper';
 import {View, StyleSheet} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {COLORS} from '@styles/colors';
+import Config from 'react-native-config'
 
 const SecondaryHeader = () => {
   const navigation = useNavigation();
