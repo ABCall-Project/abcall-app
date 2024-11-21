@@ -10,7 +10,7 @@ const FormLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const { isLoggedIn, setLoggedIn } = useAuth();
+    const { isLoggedIn, setLoggedIn, setUser } = useAuth();
 
     const handleSignIn = async () => {
         try {
@@ -20,7 +20,8 @@ const FormLogin = () => {
             }
             const authService = new AuthService();
 
-            const response = await authService.signIn(email, password);
+            const user = await authService.signIn(email, password);
+            setUser(user);
             setLoggedIn(true);
 
         }
