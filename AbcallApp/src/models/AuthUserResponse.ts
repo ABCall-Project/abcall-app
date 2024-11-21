@@ -1,5 +1,3 @@
-import { ad } from "node_modules/@faker-js/faker/dist/airline-WjISwexU";
-
 class AuthUserResponse {
     id: string;
     name: string;
