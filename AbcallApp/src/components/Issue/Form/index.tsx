@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: COLORS.PRIMARY, // Azul
-    padding: 10,
+    padding: 16,
     borderRadius: 4,
     alignItems: 'center',
     marginBottom: 16,
