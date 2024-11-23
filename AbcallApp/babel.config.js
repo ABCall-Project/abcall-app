@@ -1,5 +1,7 @@
 module.exports = {
-  presets: ['module:@react-native/babel-preset'],
+  presets: [
+    'module:metro-react-native-babel-preset',
+  ],
   plugins: [
     [
       'module-resolver',
@@ -12,9 +14,15 @@ module.exports = {
           '@modules': './src/modules',
           '@app': './src',
           '@clients': './src/clients',
-          '@utils': './src/utils'
+          '@utils': './src/utils',
+          '@hooks': './src/hooks',
+          '@models': './src/models',
+          '@tests': './tests',
         },
       },
     ],
+    ["@babel/plugin-transform-class-properties", { "loose": true }],
+    ["@babel/plugin-transform-private-methods", { "loose": true }],
+    ["@babel/plugin-transform-private-property-in-object", { "loose": true }]
   ],
 };
