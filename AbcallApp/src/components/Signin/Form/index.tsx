@@ -3,14 +3,20 @@ import { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { AuthService } from '@clients/backendForFrontend/authServices';
-import { useAuth } from '../../../../contexts/AuthContext';
+import { useAuth } from '@contexts/AuthContext';
 
 
 const FormLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const { isLoggedIn, setLoggedIn, setUser } = useAuth();
+    const authContext = useAuth();
+
+    if (!authContext) {
+        return null;
+    }
+
+    const { setUser, setLoggedIn } = authContext;
 
     const handleSignIn = async () => {
         try {
