@@ -6,6 +6,7 @@ module.exports = {
   },
   testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'node'],
+  setupFiles: ['./jest.setup.js'],
   setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{ts,tsx}'],
@@ -27,6 +28,7 @@ module.exports = {
     '<rootDir>/tests/setupTests.ts',
     '<rootDir>/tests/builders/',
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?|react-native-safe-area-context)/)',
+    'node_modules/(?!(@react-native|react-native|@react-navigation|form-data)/)',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
