@@ -40,6 +40,7 @@ const FormLogin = () => {
     return (
         <View style={styles.form}>
             <TextInput
+                testID="email-input"
                 label="Correo"
                 mode="outlined" 
                 value={email}
@@ -49,6 +50,7 @@ const FormLogin = () => {
                 autoCapitalize="none"
             />
             <TextInput
+                testID="password-input"
                 label="Contraseña"
                 mode="outlined"
                 value={password}
@@ -57,6 +59,7 @@ const FormLogin = () => {
                 style={styles.input}
                 right={
                     <TextInput.Icon
+                        testID="password-visibility-icon"
                         icon={passwordVisible ? 'eye-off' : 'eye'}
                         onPress={() => setPasswordVisible(!passwordVisible)}
                     />
