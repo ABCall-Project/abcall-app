@@ -32,8 +32,6 @@ class AuthService {
       }
 
       const data = await response.json();
-
-      // Deserializar la respuesta en un objeto de tipo AuthUserResponse
       return new AuthUserResponse(
         data.id,
         data.name,
