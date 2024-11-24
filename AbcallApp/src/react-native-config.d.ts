@@ -4,7 +4,8 @@ declare module 'react-native-config' {
     APP_ENV: 'development' | 'production' | 'test';
     ABCALL_WEBSOCKET_SERVICE_BASE_URL: string
     ISSUE_HOST: string,
-    ABCALL_BFF_BASE_URL: string
+    ABCALL_BFF_BASE_URL: string,
+    PHRASE_KEY: string
   }
 
   const Config: EnvConfig;

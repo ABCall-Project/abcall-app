@@ -1,18 +1,20 @@
 import { AuthUserResponse } from '@models/AuthUserResponse';
 import CryptoJS from 'crypto-js';
-import Config from "react-native-config";
+import Config from 'react-native-config';
 
 
 
 class AuthService {
   baseUrl: string;
+  phraseKey: string;
   constructor() {
     this.baseUrl = Config.ABCALL_BFF_BASE_URL;
+    this.phraseKey = Config.PHRASE_KEY;
   }
 
   async signIn(email: string, password: string): Promise<AuthUserResponse> {
     try {
-      const encryptedPassword = this.encryptData(password, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnZpcm9ubWVudCI6InRlc3QifQ.oH-jIKbyWL6jjH8YCk5YIEwnlnuB9f-5nXBYNFe3pXY');
+      const encryptedPassword = this.encryptData(password, this.phraseKey);
       const options = {
         method: 'POST',
         headers: {
