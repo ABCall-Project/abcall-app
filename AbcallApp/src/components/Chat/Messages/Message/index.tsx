@@ -22,8 +22,8 @@ const MessageBubble = (bubble: Bubble) => {
 
 const style = StyleSheet.create({
     bubble: {
-        paddingLeft: 10,
-        paddingRight: 10,
+        paddingLeft: 12,
+        paddingRight: 12,
         paddingBottom: 10,
         paddingTop: 10,
         borderRadius: 50,
