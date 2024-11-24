@@ -7,6 +7,7 @@ import {
   waitFor,
 } from '@testing-library/react-native';
 import {Form} from '@components/Issue/Form';
+import * as useAuthContext from '@contexts/AuthContext';
 
 jest.mock('react-native-document-picker', () => {
   return {
@@ -34,6 +35,12 @@ describe('Unit test suite for Form component', () => {
     jest.clearAllMocks();
   });
   test('Should render the Form component', () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     render(<Form />);
 
     const element = screen.getByText(/Asunto/i);
@@ -42,6 +49,12 @@ describe('Unit test suite for Form component', () => {
   });
 
   test('Should show an alert if required fields are empty', async () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     const {getByText} = render(<Form />);
 
     fireEvent.press(getByText('Registrar Incidencia'));
@@ -54,6 +67,12 @@ describe('Unit test suite for Form component', () => {
   });
 
   test('Should submits form data as JSON if no file is selected', async () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     const {getByPlaceholderText, getByText} = render(<Form />);
 
     fireEvent.changeText(
@@ -74,6 +93,12 @@ describe('Unit test suite for Form component', () => {
   });
 
   test('Should handles fetch error and shows error alert', async () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     const {getByPlaceholderText, getByText} = render(<Form />);
     fireEvent.changeText(
       getByPlaceholderText('Escribe el asunto'),
@@ -97,6 +122,12 @@ describe('Unit test suite for Form component', () => {
   });
 
   test('Should submits form data with file as FormData', async () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     const documentPickMock = require('react-native-document-picker');
     documentPickMock.pick.mockResolvedValueOnce({
       name: 'test-file.pdf',
@@ -132,6 +163,12 @@ describe('Unit test suite for Form component', () => {
   });
 
   test('Should displays alert on submission success', async () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     mockFetch.mockResolvedValueOnce({ok: true});
     const {getByPlaceholderText, getByText} = render(<Form />);
 
@@ -154,6 +191,12 @@ describe('Unit test suite for Form component', () => {
   });
 
   test('Should displays error alert on submission failure', async () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     mockFetch.mockResolvedValueOnce({ok: false});
     const {getByPlaceholderText, getByText} = render(<Form />);
 
@@ -176,6 +219,12 @@ describe('Unit test suite for Form component', () => {
   });
 
   test('Should picks a file and updates state when file selected', async () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     const DocumentPickerMock = require('react-native-document-picker');
     DocumentPickerMock.pick.mockResolvedValueOnce({name: 'sample.pdf'});
     const {getByText} = render(<Form />);

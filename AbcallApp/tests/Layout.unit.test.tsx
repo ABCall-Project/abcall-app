@@ -2,6 +2,7 @@ import React from 'react';
 import {render, screen} from '@testing-library/react-native';
 import {Layout} from '@app/Layout';
 import {Text} from 'react-native';
+import * as useAuthContext from '@contexts/AuthContext';
 
 jest.mock('react-native-safe-area-context', () => {
   return {
@@ -43,6 +44,12 @@ describe('Unit test suite for Layout', () => {
     jest.clearAllMocks();
   });
   test('Should render the Layout component', () => {
+    jest.spyOn(useAuthContext, 'useAuth').mockReturnValue({
+      isLoggedIn: true,
+      setLoggedIn: jest.fn(),
+      user: null,
+      setUser: jest.fn(),
+    });
     render(
       <Layout>
         <Text>learn react</Text>
