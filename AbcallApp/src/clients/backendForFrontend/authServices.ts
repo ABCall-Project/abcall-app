@@ -8,7 +8,6 @@ class AuthService {
   baseUrl: string;
   constructor() {
     this.baseUrl = Config.ABCALL_BFF_BASE_URL;
-    //this.baseUrl = 'http://localhost:5002/';
   }
 
   async signIn(email: string, password: string): Promise<AuthUserResponse> {
