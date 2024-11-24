@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,14 +10,25 @@ import {
 import DocumentPicker from 'react-native-document-picker';
 import {COLORS} from '@styles/colors';
 import Config from 'react-native-config';
+import { useAuth } from '@contexts/AuthContext';
 
 const Form = () => {
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState<any>(null);
-  const [userId, setUserId] = useState<string>(
-    'e8b8a5d2-0f71-4e4d-b6e3-9c9d64f9cdda',
-  );
+  const [userId, setUserId] = useState<string>('');
+  const authContext = useAuth();
+  useEffect(() => {
+    if (authContext) {
+      const { user } = authContext;
+      setUserId(user?.id || '');
+    }
+  }, [authContext]);
+  if (!authContext) {
+    return null;
+  }
+
+
   const ISSUE_HOST = Config.ISSUE_HOST;
 
   const handleFilePick = async () => {
@@ -64,6 +75,9 @@ const Form = () => {
       });
 
       try {
+
+        
+
         const response = await fetch(`${ISSUE_HOST}/issue/post`, {
           method: 'POST',
           body: formData,
