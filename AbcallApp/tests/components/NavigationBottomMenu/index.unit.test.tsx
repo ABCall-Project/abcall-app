@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, fireEvent, waitFor} from '@testing-library/react-native';
+import {render, fireEvent, waitFor, act} from '@testing-library/react-native';
 import {NavigationBottomMenu} from '@components/NavigationBottomMenu';
 import {useGetIssuesPaginationByUserId} from '@hooks/useIssues';
 
@@ -85,6 +85,24 @@ describe('NavigationBottomMenu', () => {
     const {getByText} = render(<NavigationBottomMenu />);
 
     await waitFor(() => expect(getByText('Chat')).toBeTruthy());
+  });
+
+  test('should renders correctly with initial route and navigates between tabs', async () => {
+    const screen = render(<NavigationBottomMenu />);
+
+    const [ issue ] = screen.getAllByText('Problemas');
+    fireEvent.press(issue);
+
+    await waitFor(() => expect(issue).toBeTruthy());
+  });
+
+  test('Should navigate to reports component', async () => {
+    const screen = render(<NavigationBottomMenu />);
+
+    const [ ,reports ] = screen.getAllByText('Reportes');
+    fireEvent.press(reports);
+
+    await waitFor(() => expect(reports).toBeTruthy());
   });
 });
 

@@ -28,6 +28,8 @@ const TextBox = ({ text = '', onSendHandler }: TextBoxProps) => {
           placeholder="Ingresa tu mensaje..."
           value={value}
           onChangeText={onChangeHandler}
+          multiline={true}
+          scrollEnabled={true}
         />
         <IconButton
           style={textBoxStyles.icon}
@@ -57,6 +59,7 @@ const textBoxStyles = StyleSheet.create({
     paddingBottom: 10,
   },
   input: {
+    maxWidth: '85%',
     borderWidth: 0,
     fontSize: 24,
   },
