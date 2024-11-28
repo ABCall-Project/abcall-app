@@ -6,8 +6,17 @@ import {SecondaryHeader} from '@components/Issues/SecondaryHeader';
 import {useGetIssuesPaginationByUserId} from '@hooks/useIssues';
 import {COLORS} from '@styles/colors';
 import {IssueCard} from '@components/Issues/IssueCard';
+import { useAuth } from '@contexts/AuthContext';
 
 const Issues = () => {
+  const authContext = useAuth();
+  let userId = 'f7d0b546-94cb-468f-acf9-a3f287ba1b77';
+  let token = '';
+  if (authContext) {
+    const { user } = authContext;
+    token = user ? user.token : token;
+    userId = user ? user.id : userId;
+  }
   const {
     issues,
     setPage,
@@ -17,9 +26,10 @@ const Issues = () => {
     isLoading,
     page,
   } = useGetIssuesPaginationByUserId(
-    'f7d0b546-94cb-468f-acf9-a3f287ba1b77',
+    userId,
     1,
     10,
+    token,
   );
 
   const onRefresh = useCallback(() => {
